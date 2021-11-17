@@ -1,0 +1,10 @@
+
+u
+java:S1989"ZHandle the following exception that could be thrown by "parseLong": NumberFormatException.(Í»Øéùÿÿÿÿ
+B
+java:S1125"'Remove the unnecessary boolean literal.(¨Ú¬°ûÿÿÿÿ
+B
+java:S1125$"'Remove the unnecessary boolean literal.(¨Ú¬°ûÿÿÿÿ
+p
+java:S1989)"SHandle the following exception that could be thrown by "sendRedirect": IOException.(“°Žï8×ö™ÿÑ/
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í»Øéùÿÿÿÿ

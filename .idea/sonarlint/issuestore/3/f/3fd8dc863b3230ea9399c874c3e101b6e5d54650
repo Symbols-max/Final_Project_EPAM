@@ -1,0 +1,6 @@
+
+W	java:S107"<Method has 8 parameters, which is greater than 7 authorized.(Úê–I8ñõÛ×Ñ/
+X	java:S107"<Method has 9 parameters, which is greater than 7 authorized.(ù…‹Ò8ñõÛ×Ñ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Öº“´ÿÿÿÿÿ8¿ıÊ¦Ñ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÖæŞúÿÿÿÿ8ÀıÊ¦Ñ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÖæŞúÿÿÿÿ8ÀıÊ¦Ñ/

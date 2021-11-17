@@ -1,0 +1,39 @@
+
+
+java:S1186h"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‹¨¯¿8É¯›Ò/
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.(½¨¤ó8ØÃÆ¾Ò/
+œ
+java:S2159 "zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(šçßĞúÿÿÿÿ8ç°›Ò/
+|
+java:S1989("ZHandle the following exception that could be thrown by "parseLong": NumberFormatException.(Æáüúÿÿÿÿ8ï°›Ò/
+I
+java:S1125+"'Remove the unnecessary boolean literal.(¾¤ô„şÿÿÿÿ8ö°›Ò/
+p
+java:S19894"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ùöß¦8ÄİÊ¾Ò/
+D
+java:S11259"'Remove the unnecessary boolean literal.(‚ëùú8—±›Ò/
+p
+java:S1989@"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ùöß¦8­âË¾Ò/
+p
+java:S1989J"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ùöß¦8´¢Í¾Ò/
+p
+java:S1989W"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ùöß¦8ÙÎ¾Ò/
+p
+java:S1989b"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ùöß¦8±†Ï¾Ò/
+B
+java:S1125p"'Remove the unnecessary boolean literal.(õ¦Ø®ıÿÿÿÿ
+B
+java:S1125z"'Remove the unnecessary boolean literal.(šÿ³Ìùÿÿÿÿ
+y
+java:S11921"\Define a constant instead of duplicating this literal "/pages/user/homePageServlet" 4 times.(¨•ô8úÃÆ¾Ò/
+c
+java:S1192/"MDefine a constant instead of duplicating this literal "message_home" 4 times.(÷Ççæ
+r
+java:S11924"UDefine a constant instead of duplicating this literal "/pages/errorPage.jsp" 5 times.(ùöß¦8¼¢Í¾Ò/
+E
+java:S1066q"/Merge this if statement with the enclosing one.(û©ÍÎ
+f	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚äâë
+k	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æáüúÿÿÿÿ
+R
+java:S2589 "7Remove this expression which always evaluates to "true"(šçßĞúÿÿÿÿ

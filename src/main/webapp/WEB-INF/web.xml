@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+
+  <servlet>
+    <servlet-name>EntrantsOnFaculty</servlet-name>
+    <jsp-file>/pages/admin/entrantsOnFaculty</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EntrantsOnFaculty</servlet-name>
+    <url-pattern>/entrantsOnFaculty</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CheckAdmin</servlet-name>
+    <jsp-file>/pages/checkAdmin.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckAdmin</servlet-name>
+    <url-pattern>/checkAdmin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Adminka</servlet-name>
+    <jsp-file>/pages/admin/adminka.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Adminka</servlet-name>
+    <url-pattern>/adminka</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FacultyInfoForAdmin</servlet-name>
+    <jsp-file>/pages/admin/facultyInfoForAdmin</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacultyInfoForAdmin</servlet-name>
+    <url-pattern>/facultyInfoForAdmin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddNewFaculty</servlet-name>
+    <jsp-file>/pages/admin/addNewFaculty</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewFaculty</servlet-name>
+    <url-pattern>/addNewFaculty</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ChangeFaculty</servlet-name>
+    <jsp-file>/pages/admin/changeFaculty</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeFaculty</servlet-name>
+    <url-pattern>/changeFaculty</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminkaEntrant</servlet-name>
+    <jsp-file>/pages/admin/adminkaEntrant</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminkaEntrant</servlet-name>
+    <url-pattern>/adminkaEntrant</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>InfoAboutEntrat</servlet-name>
+    <jsp-file>/pages/admin/infoAboutEntrant</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InfoAboutEntrat</servlet-name>
+    <url-pattern>/infoAboutEntrant</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SignIn</servlet-name>
+    <jsp-file>/pages/signIn.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignIn</servlet-name>
+    <url-pattern>/signIn</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Registration</servlet-name>
+    <jsp-file>/pages/registration.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Registration</servlet-name>
+    <url-pattern>/registration</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>HomePage</servlet-name>
+    <jsp-file>/pages/user/homePage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HomePage</servlet-name>
+    <url-pattern>/homePage</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Index</servlet-name>
+    <jsp-file>/pages/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Index</servlet-name>
+    <url-pattern>/main</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>FacultyInfo</servlet-name>
+    <jsp-file>/pages/facultyInfo.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacultyInfo</servlet-name>
+    <url-pattern>/facultyInfo</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Profile</servlet-name>
+    <jsp-file>/pages/user/profile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Profile</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ChangeInfoEntrant</servlet-name>
+    <jsp-file>/pages/user/changeInfoEntrant.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeInfoEntrant</servlet-name>
+    <url-pattern>/changeInfoEntrant</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ChangeEntrantSubject</servlet-name>
+    <jsp-file>/pages/user/changeEntrantSubject.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeEntrantSubject</servlet-name>
+    <url-pattern>/changeEntrantSubject</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ErrorPage</servlet-name>
+    <jsp-file>/pages/user/errorPage.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorPage</servlet-name>
+    <url-pattern>/errorPage</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>setCharacterEncodingFilter</filter-name>
+    <filter-class>org.epam.final_project.filters.EncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>setCharacterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>accessEntrantFilter</filter-name>
+    <filter-class>org.epam.final_project.filters.AccessEntrantFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>accessEntrantFilter</filter-name>
+    <url-pattern>/pages/user/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>accessAdminFilter</filter-name>
+    <filter-class>org.epam.final_project.filters.AccessAdminFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>accessAdminFilter</filter-name>
+    <url-pattern>/pages/admin/*</url-pattern>
+  </filter-mapping>
+
+</web-app>

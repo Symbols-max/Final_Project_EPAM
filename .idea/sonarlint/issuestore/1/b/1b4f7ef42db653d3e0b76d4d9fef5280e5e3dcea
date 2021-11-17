@@ -1,0 +1,19 @@
+
+o
+java:S1989"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(¿…Ðô
+B
+java:S1125!"'Remove the unnecessary boolean literal.(â¸Ššûÿÿÿÿ
+=
+java:S1125$"'Remove the unnecessary boolean literal.(‚ëùú
+i
+java:S1989%"SHandle the following exception that could be thrown by "sendRedirect": IOException.(î«õ²
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(ÓÂá±úÿÿÿÿ
+|
+java:S1989*"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(Œ¤†Üùÿÿÿÿ
+=
+java:S11250"'Remove the unnecessary boolean literal.(‚ëùú
+i
+java:S19891"SHandle the following exception that could be thrown by "sendRedirect": IOException.(î«õ²
+M	java:S1063"9Replace this use of System.out or System.err by a logger.(´¢¯j
+|
+java:S19896"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(Œ¤†Üùÿÿÿÿ
