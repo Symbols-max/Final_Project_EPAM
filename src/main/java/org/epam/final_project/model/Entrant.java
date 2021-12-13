@@ -1,5 +1,6 @@
 package org.epam.final_project.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +29,17 @@ public class Entrant {
         this.region = region;
         this.placeEducation = placeEducation;
         this.diplom = diplom;
+    }
+
+    public Entrant(long id, String firstName, String middleName, String lastName, String email, String city, String region, String placeEducation) {
+        this.id = id;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.surname = lastName;
+        this.email = email;
+        this.city = city;
+        this.region = region;
+        this.placeEducation = placeEducation;
     }
 
     public Entrant(long id, String firstName, String middleName, String lastName, String email, String city, String region, String placeEducation, byte[] diplom,String status) {
@@ -177,26 +189,15 @@ public class Entrant {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Entrant)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Entrant entrant = (Entrant) o;
-        return getId() == entrant.getId() &&
-                getAvgGrade() == entrant.getAvgGrade() &&
-                Objects.equals(getFirstName(), entrant.getFirstName()) &&
-                Objects.equals(getMiddleName(), entrant.getMiddleName()) &&
-                Objects.equals(getSurname(), entrant.getSurname()) &&
-                Objects.equals(getEmail(), entrant.getEmail()) &&
-                Objects.equals(getCity(), entrant.getCity()) &&
-                Objects.equals(getRegion(), entrant.getRegion()) &&
-                Objects.equals(getPlaceEducation(), entrant.getPlaceEducation()) &&
-                Objects.equals(getDiplom(), entrant.getDiplom()) &&
-                Objects.equals(getStatus(), entrant.getStatus()) &&
-                Objects.equals(getFacultyList(), entrant.getFacultyList()) &&
-
-                Objects.equals(getSubjectList(), entrant.getSubjectList());
+        return id == entrant.id && Float.compare(entrant.avgGrade, avgGrade) == 0 && Objects.equals(firstName, entrant.firstName) && Objects.equals(middleName, entrant.middleName) && Objects.equals(surname, entrant.surname) && Objects.equals(email, entrant.email) && Objects.equals(city, entrant.city) && Objects.equals(region, entrant.region) && Objects.equals(placeEducation, entrant.placeEducation) && Objects.equals(status, entrant.status) && Arrays.equals(diplom, entrant.diplom) && Objects.equals(facultyList, entrant.facultyList) && Objects.equals(subjectList, entrant.subjectList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(),getAvgGrade(),getStatus(),getFirstName(), getMiddleName(), getSurname(), getEmail(), getCity(), getRegion(), getPlaceEducation(), getDiplom(), getFacultyList(), getSubjectList());
+        int result = Objects.hash(id, firstName, middleName, surname, email, city, region, placeEducation, status, facultyList, subjectList, avgGrade);
+        result = 31 * result + Arrays.hashCode(diplom);
+        return result;
     }
 }

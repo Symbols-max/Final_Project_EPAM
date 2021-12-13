@@ -3,7 +3,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Crystal Fitness</title>
+    <title>ChangeInfo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
@@ -105,28 +105,28 @@
         <div class="col-md-offset-3 col-md-6" style="padding-top: 5%">
             <form class="form-horizontal" action="/pages/user/changeInfoEntrantServlet" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="newName" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.name")}">
+                    <input type="text" class="form-control" name="newName" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.name")}" required>
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="newSurname" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.surname")}">
+                    <input type="text" class="form-control" name="newSurname" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.surname")}" required>
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="newMiddleName" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.middleName")}">
+                    <input type="text" class="form-control" name="newMiddleName" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.middleName")}" required>
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="newEmail" placeholder="Email">
+                    <input type="email" class="form-control" name="newEmail" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="newCity" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.city")}">
+                    <input type="text" class="form-control" name="newCity" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.city")}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="newRegion" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.region")}">
+                    <input type="text" class="form-control" name="newRegion" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.region")}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="newPlaceEducation" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.placeEducation")}">
+                    <input type="text" class="form-control" name="newPlaceEducation" placeholder="${sessionScope.get("bundle").getString("changeInfoEntrant.input.placeEducation")}" required>
                 </div>
                 <div class="form-group">
                     <div style="display: -webkit-inline-flex">${sessionScope.get("bundle").getString("changeInfoEntrant.input.certificate")}:  <input type="file"  name="newDiplom">

@@ -3,7 +3,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Crystal Fitness</title>
+  <title>CheckAdmin</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
@@ -114,11 +114,11 @@
       <form class="form-horizontal" action="/checkAdminServlet" method="post">
         <span class="heading">Аутетнтификация администратора</span>
         <div class="form-group">
-          <input type="text" class="form-control" name="adminLogin" placeholder="Login">
+          <input type="text" class="form-control" name="adminLogin" placeholder="Login" required>
           <i class="fa fa-user"></i>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" name="adminPassword" placeholder="Password">
+          <input type="password" class="form-control" name="adminPassword" placeholder="Password" required>
           <i class="fa fa-lock"></i>
         </div>
         <div>

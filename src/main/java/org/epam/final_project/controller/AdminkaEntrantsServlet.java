@@ -1,13 +1,8 @@
 package org.epam.final_project.controller;
 
 import org.epam.final_project.model.Entrant;
-import org.epam.final_project.model.Faculty;
-import org.epam.final_project.service.ServiceEntrant;
 import org.epam.final_project.service.ServiceEntrantImpl;
-import org.epam.final_project.service.ServiceFaculty;
-import org.epam.final_project.service.ServiceFacultyImpl;
 import org.epam.final_project.util.Helper;
-import org.epam.final_project.util.Sort;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +20,7 @@ public class AdminkaEntrantsServlet extends HttpServlet {
     private static final Logger log=Logger.getLogger(AdminkaEntrantsServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ServiceEntrant serviceEntrant=new ServiceEntrantImpl();
+        ServiceEntrantImpl serviceEntrant=new ServiceEntrantImpl();
         List<Entrant> entrantList = null;
 
         String sort;
@@ -38,6 +33,7 @@ public class AdminkaEntrantsServlet extends HttpServlet {
 
         HttpSession session=request.getSession();
         session.setAttribute("sort",sort);
+
 
        if (sort.equals("blockedEntrant")) {
             entrantList=serviceEntrant.findAllEntrantsByStatus("blocked");

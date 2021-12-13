@@ -1,9 +1,9 @@
 package org.epam.final_project.service;
 
 import org.epam.final_project.model.Entrant;
+import org.epam.final_project.model.Faculty;
 import org.epam.final_project.model.Subject;
 import org.epam.final_project.util.DBManager;
-import org.epam.final_project.model.Faculty;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,10 +18,22 @@ import java.util.logging.Logger;
 
 public class ServiceFacultyImpl implements ServiceFaculty {
     private static final Logger logger=Logger.getLogger(ServiceFacultyImpl.class.getName());
+    private DBManager dbManager;
+
+
+    public ServiceFacultyImpl(){
+        dbManager=DBManager.getInstance("database.properties");
+    }
+
+    public ServiceFacultyImpl(String path){
+        dbManager=DBManager.getInstance(path);
+    }
+
+
     @Override
     public boolean changeRecruitmentStatusById(String recruitment,long id_faculty){
         String sql = "UPDATE faculty set recruitment=? where id_faculty=?";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, recruitment);
             statement.setLong(2, id_faculty);
@@ -37,7 +49,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
     public List<Faculty> findAllFaculty() {
         List<Faculty> faculties = new ArrayList<>();
         String sql = "select id_faculty,name_faculty,all_places,funded_places from faculty;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
@@ -56,10 +68,11 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         }
     }
 
+    @Override
     public List<Subject> findSubjectById(long id) {
         List<Subject> subjectList = new ArrayList<>();
         String sql = "select name_subject,grade from subject_faculty where id_faculty=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -77,10 +90,11 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         }
     }
 
+    @Override
     public Faculty findFacultyById(long id) {
         Faculty faculty = null;
         String sql = "select id_faculty,name_faculty,all_places,funded_places,description,recruitment from faculty where id_faculty=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -101,10 +115,11 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         }
     }
 
+    @Override
     public int numberOfStudentsOnFaculty(long id) {
         int i = -1;
         String sql = "SELECT count(*) FROM faculty_entrant where id_faculty=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -119,9 +134,10 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         }
     }
 
+    @Override
     public boolean deleteFaculty(long id) {
         String sql = "DELETE FROM faculty WHERE id_faculty=?";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             int rs = statement.executeUpdate();
@@ -135,12 +151,13 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         return true;
     }
 
+    @Override
     public boolean addFaculty(long id, String name, int allPlaces, int fundedPlaces, String description) {
 
         String sql = "INSERT INTO faculty(id_faculty, name_faculty, funded_places, all_places, description)\n" +
                 "VALUES(?,?,?,?,?);";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             statement.setString(2, name);
@@ -155,10 +172,11 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         return true;
     }
 
+    @Override
     public boolean changeFaculty(long id, String name, int allPlaces, int fundedPlaces, String description, long oldFaculty_id) {
         String sql = "UPDATE faculty SET id_faculty=?,name_faculty=?,funded_places=?,all_places=?,description=? WHERE id_faculty=?";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection =dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             statement.setString(2, name);
@@ -177,7 +195,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
     @Override
     public boolean checkSubjectById(long id) {
         String sql = "select * from subject_faculty where id_faculty=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -192,6 +210,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         return false;
     }
 
+    @Override
     public boolean addSubjectById(Map<String,Integer> subjects, long id){
         String sql = "INSERT INTO subject_faculty (id_faculty,name_subject,grade)\n" +
                 "VALUES (?,?,?);";
@@ -199,7 +218,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = DBManager.connectToDB();
+            connection = dbManager.connectToDB();
             connection.setAutoCommit(false);
             for (Map.Entry<String, Integer> entry : subjects.entrySet()) {
                 statement = connection.prepareStatement(sql);
@@ -242,6 +261,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         return true;
     }
 
+    @Override
     public boolean addSubjectsByIdWithDeleting(Map<String, Integer> subjects, long id) {
 
         String sql2 = "delete from subject_faculty where id_faculty=?";
@@ -252,7 +272,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = DBManager.connectToDB();
+            connection = dbManager.connectToDB();
             connection.setAutoCommit(false);
             statement=connection.prepareStatement(sql2);
             statement.setLong(1, id);
@@ -293,10 +313,11 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         return true;
     }
 
+    @Override
     public Integer count(){
         Integer n = null;
         String sql = "SELECT COUNT(*) FROM faculty";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet rs = statement.executeQuery()) {
 
@@ -311,6 +332,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         }
     }
 
+    @Override
     public List<Entrant> entrantsOnFaculty(long id_faculty){
         List<Entrant> entrantList = new ArrayList<>();
         String sql = "select e.last_name,e.first_name,e.midle_name,e.email,avg(s.grade) \n" +
@@ -321,7 +343,7 @@ public class ServiceFacultyImpl implements ServiceFaculty {
                 "group by e.id_entrant \n" +
                 "order by avg(s.grade) desc;";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id_faculty);
             try (ResultSet rs = statement.executeQuery()) {
@@ -339,6 +361,17 @@ public class ServiceFacultyImpl implements ServiceFaculty {
         } catch (SQLException ex) {
             logger.log(Level.WARNING,ex.getMessage(),ex);
             return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public void deleteAll(){
+        String sql = "DELETE FROM faculty";
+        try (Connection connection = dbManager.connectToDB();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            logger.log(Level.WARNING,ex.getMessage(),ex);
         }
     }
 }

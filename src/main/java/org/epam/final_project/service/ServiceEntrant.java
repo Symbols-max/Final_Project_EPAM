@@ -31,4 +31,5 @@ public interface ServiceEntrant extends Service{
     boolean checkSubjectById(long id);
     boolean addSubjectsById(Map<String, Integer> subjects, long id);
     boolean addSubjectsByIdWithDeleting(Map<String, Integer> subjects, long id);
+    void deleteAll();
 }

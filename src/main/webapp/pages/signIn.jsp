@@ -3,7 +3,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Crystal Fitness</title>
+    <title>SignIn</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/signIn.css"/>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
@@ -114,7 +115,7 @@
             <form class="form-horizontal" action="/signInServlet" method="get">
                 <span class="heading">${sessionScope.get("bundle").getString("signIn.text.signIn")}</span>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="adminEmail" placeholder="Email">
+                    <input type="email" class="form-control" name="adminEmail" placeholder="Email" required>
                     <i class="fa fa-user"></i>
                 </div>
                 <div>

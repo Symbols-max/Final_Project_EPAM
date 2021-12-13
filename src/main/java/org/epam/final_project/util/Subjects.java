@@ -1,8 +1,8 @@
 package org.epam.final_project.util;
 
 public enum Subjects {
-    UKRAINIAN("Украинский язык и литература"),HISTORY("История Украины"),MATH("Математика"),GEOGRAPHY("География"),PHYSICS("Физика"),
-    BIOLOGY("Биология"),CHEMISTRY("Химия"),ENGLISH("Английский"),SPANISH("Испанский"),GERMAN("Немецкий"),FRENCH("Французкий");
+    UKRAINIAN("Украинский язык и литература"), HISTORY("История Украины"), MATH("Математика"), GEOGRAPHY("География"), PHYSICS("Физика"),
+    BIOLOGY("Биология"), CHEMISTRY("Химия"), ENGLISH("Английский"), SPANISH("Испанский"), GERMAN("Немецкий"), FRENCH("Французкий");
 
     private String value;
 

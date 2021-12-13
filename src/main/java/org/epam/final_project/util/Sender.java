@@ -1,13 +1,12 @@
 package org.epam.final_project.util;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class Sender {
     private final static Logger logger=Logger.getLogger(Sender.class.getName());
@@ -57,7 +56,7 @@ public class Sender {
             //Отправляем сообщение
             Transport.send(message);
         } catch (MessagingException e) {
-            logger.log(Level.WARNING,e.getMessage(),e);
+            logger.log(Level.WARNING,"error",e);
         }
     }
 }

@@ -22,7 +22,7 @@ public class PreServlet extends HttpServlet {
         String role=String.valueOf(session.getAttribute("role"));
 
         if(role.equals("entrant")) {
-                getServletContext().getRequestDispatcher("/pages/user/homePageServlet").forward(request,response);
+                request.getRequestDispatcher("/pages/user/homePageServlet").forward(request,response);
         }
         else if (role.equals("admin")){
                 getServletContext().getRequestDispatcher("/pages/admin/adminkaServlet").forward(request,response);
@@ -30,6 +30,7 @@ public class PreServlet extends HttpServlet {
         else {
             getServletContext().getRequestDispatcher("/mainServlet").forward(request, response);
         }
+
 
     }
 

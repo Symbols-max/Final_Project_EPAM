@@ -21,4 +21,5 @@ public interface ServiceFaculty extends Service{
     boolean checkSubjectById(long id);
     boolean addSubjectById(Map<String,Integer> subjects, long id);
     boolean addSubjectsByIdWithDeleting(Map<String,Integer> subjects, long id);
+    void deleteAll();
 }

@@ -1,0 +1,9 @@
+
+~
+java:S1989 "aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(üËùÁ8¬™Õ/
+E
+java:S1185$"(Remove this method to simply inherit it.(‹¨¯¿8Ÿ¬™Õ/
+‚
+java:S1989%"`Handle the following exceptions that could be thrown by "doPost": ServletException, IOException.(é÷ö¬øÿÿÿÿ8 ¬™Õ/
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀìßÈ8¡¬™Õ/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óí«µÿÿÿÿÿ8¡¬™Õ/

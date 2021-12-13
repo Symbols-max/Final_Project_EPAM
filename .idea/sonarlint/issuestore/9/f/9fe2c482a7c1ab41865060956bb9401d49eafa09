@@ -1,13 +1,0 @@
-
-W
-java:S1075"ARefactor your code to get this URI from a customizable parameter.(ú¸ò‡
-f
-java:S1989"KHandle the following exception that could be thrown by "copy": IOException.(ðìó°øÿÿÿÿ
-q
-java:S1989"VHandle the following exception that could be thrown by "getOutputStream": IOException.(ðìó°øÿÿÿÿ
-c
-java:S1075%"ARefactor your code to get this URI from a customizable parameter.(©Ï¼ôùÿÿÿÿ8Ôˆ«¦Ñ/
-X
-java:S1128"BRemove this unused import 'org.epam.final_project.util.DBManager'.(îÝ«Ó
-;
-java:S1128"%Remove this unused import 'java.sql'.(´Ý…Å

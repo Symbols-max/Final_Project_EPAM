@@ -1,7 +1,7 @@
 
 B
 java:S1125"'Remove the unnecessary boolean literal.(¾¤ô„þÿÿÿÿ
-u
-java:S1989"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ã¦‹Öúÿÿÿÿ8õëñÙÑ/
+n
+java:S1989"SHandle the following exception that could be thrown by "sendRedirect": IOException.(ã¦‹Öúÿÿÿÿ
 w
 java:S1989 "aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(÷¸˜™

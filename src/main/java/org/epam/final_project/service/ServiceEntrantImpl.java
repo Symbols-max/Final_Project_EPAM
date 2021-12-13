@@ -14,12 +14,20 @@ import java.util.logging.Logger;
 
 public class ServiceEntrantImpl implements ServiceEntrant {
     private static final Logger logger=Logger.getLogger(ServiceEntrantImpl.class.getName());
+    private DBManager dbManager;
+
+    public ServiceEntrantImpl(String path){
+        dbManager=DBManager.getInstance(path);
+    }
+    public ServiceEntrantImpl(){
+        dbManager=DBManager.getInstance("database.properties");
+    }
 
     @Override
     public byte[] getDiplomByEmail(String email) {
         byte[] bytes;
         String sql="Select diplom from entrant where email=?";
-        try (Connection connection=DBManager.connectToDB();
+        try (Connection connection=dbManager.connectToDB();
         PreparedStatement statement=connection.prepareStatement(sql)){
             statement.setString(1,email);
             try (ResultSet rs = statement.executeQuery()) {
@@ -45,8 +53,8 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     @Override
     public String checkStatusByEmail(String email) {
         String status = null;
-        String sql = "select final_project_epam.entrant.status from entrant where email=?";
-        try (Connection connection = DBManager.connectToDB();
+        String sql = "select entrant.status from entrant where email=?";
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, email);
             try (ResultSet rs = statement.executeQuery()) {
@@ -63,7 +71,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     @Override
     public boolean deleteEntrantById(long id) {
         String sql="DELETE FROM entrant WHERE id_entrant=?";
-        try(Connection connection=DBManager.connectToDB();
+        try(Connection connection=dbManager.connectToDB();
         PreparedStatement statement=connection.prepareStatement(sql)){
 
             statement.setLong(1,id);
@@ -79,7 +87,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     @Override
     public boolean changeStatus(String status,long id_entrant) {
         String sql = "UPDATE entrant set status=? where id_entrant=?";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, status);
             statement.setLong(2, id_entrant);
@@ -95,7 +103,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     public List<Entrant> findAllEntrants() {
         List<Entrant> entrantList=new ArrayList<>();
         String sql = "select * from entrant";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
@@ -126,7 +134,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     public List<Entrant> findAllEntrantsByStatus(String status_entrant) {
         List<Entrant> entrantList=new ArrayList<>();
         String sql = "select * from entrant where status=?";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection =dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1,status_entrant);
             try (ResultSet rs = statement.executeQuery()) {
@@ -157,7 +165,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     @Override
     public boolean checkEntrantByEmail(String email) {
         String sql = "select * from entrant where email=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, email);
             try (ResultSet rs = statement.executeQuery()) {
@@ -172,10 +180,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return false;
     }
 
+    @Override
     public Entrant findEntrantByEmail(String emailEntrant) {
         Entrant entrant = null;
         String sql = "select * from entrant where email=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, emailEntrant);
             try (ResultSet rs = statement.executeQuery()) {
@@ -191,7 +200,8 @@ public class ServiceEntrantImpl implements ServiceEntrant {
                     byte[] diplom = Converter.streamToByteArray(inputStream);
                     String surname = rs.getString(8);
                     String middleName = rs.getString(9);
-                    entrant = new Entrant(id, name, middleName, surname, email, city, region, placeEducation, diplom);
+                    String status=rs.getString(10);
+                    entrant = new Entrant(id, name, middleName, surname, email, city, region, placeEducation, diplom,status);
                     return entrant;
                 }
             }
@@ -202,13 +212,14 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return entrant;
     }
 
+    @Override
     public boolean addEntrant(String name, String surname, String middleName, String email,
                               String city, String region, String placeEducation, InputStream diplom) {
 
         String sql = "INSERT INTO entrant(first_name,email,city,region,place_of_education,diplom,last_name,midle_name,status)\n" +
                 "VALUES(?,?,?,?,?,?,?,?,?);";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, name);
             statement.setString(2, email);
@@ -233,7 +244,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     public Entrant findEntrantById(long id_entrant) {
         Entrant entrant = null;
         String sql = "select * from entrant where id_entrant=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection =dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id_entrant);
             try (ResultSet rs = statement.executeQuery()) {
@@ -261,10 +272,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return entrant;
     }
 
+    @Override
     public List<Subject> findSubjectById(long id) {
         List<Subject> subjectList = new ArrayList<>();
         String sql = "select name_subject,grade from subject_entrant where id_entrant=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -282,10 +294,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         }
     }
 
+    @Override
     public long findIdByEmail(String emailEntrant) {
         long id = -1;
         String sql = "select * from entrant where email=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, emailEntrant);
             try (ResultSet rs = statement.executeQuery()) {
@@ -301,10 +314,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return id;
     }
 
+    @Override
     public List<Long> findFacultyById(long id) {
         List<Long> id_faculties = new ArrayList<>();
         String sql = "SELECT id_faculty FROM faculty_entrant where id_entrant=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -320,10 +334,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         }
     }
 
+    @Override
     public boolean addEntrantFaculty(long idEntrant, long idFaculty) {
         String sql = "INSERT INTO faculty_entrant(id_faculty, id_entrant) VALUES(?,?);";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, idFaculty);
             statement.setLong(2, idEntrant);
@@ -337,6 +352,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return true;
     }
 
+    @Override
     public boolean updateEntrantInfoByEmail(String name, String surname, String middleName, String email,
                                             String city, String region, String placeEducation, InputStream diplom, String oldEmail) {
         String sql = "UPDATE entrant SET\n" +
@@ -350,7 +366,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
                 "midle_name = ?\n" +
                 "WHERE email = ?;";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, name);
             statement.setString(2, email);
@@ -371,10 +387,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return true;
     }
 
+    @Override
     public boolean deleteFacultyInEntrant(long id_faculty, long id_entrant) {
         String sql = "DELETE FROM faculty_entrant WHERE id_faculty=? and id_entrant=?";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id_faculty);
             statement.setLong(2, id_entrant);
@@ -388,10 +405,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return true;
     }
 
+    @Override
     public boolean deleteSubjectById(long id) {
         String sql = "DELETE FROM subject_entrant WHERE id_entrant=?";
 
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             if (statement.executeUpdate() != 1) {
@@ -404,6 +422,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return true;
     }
 
+    @Override
     public boolean addSubjectsById(Map<String, Integer> subjects, long id) {
         String sql = "INSERT INTO subject_entrant (id_entrant,name_subject,grade)\n" +
                 "VALUES (?,?,?);";
@@ -411,7 +430,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = DBManager.connectToDB();
+            connection = dbManager.connectToDB();
             connection.setAutoCommit(false);
             for (Map.Entry<String, Integer> entry : subjects.entrySet()) {
                 statement = connection.prepareStatement(sql);
@@ -455,6 +474,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
     }
 
 
+    @Override
     public boolean addSubjectsByIdWithDeleting(Map<String, Integer> subjects, long id) {
 
         String sql2 = "delete from subject_entrant where id_entrant=?";
@@ -465,7 +485,7 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = DBManager.connectToDB();
+            connection = dbManager.connectToDB();
             connection.setAutoCommit(false);
             statement=connection.prepareStatement(sql2);
             statement.setLong(1, id);
@@ -506,9 +526,10 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return true;
     }
 
+    @Override
     public boolean checkSubjectById(long id) {
         String sql = "select * from subject_entrant where id_entrant=?;";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet rs = statement.executeQuery()) {
@@ -523,10 +544,11 @@ public class ServiceEntrantImpl implements ServiceEntrant {
         return false;
     }
 
+    @Override
     public Integer count(){
         Integer n = null;
         String sql = "SELECT COUNT(*) FROM entrant";
-        try (Connection connection = DBManager.connectToDB();
+        try (Connection connection = dbManager.connectToDB();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet rs = statement.executeQuery()) {
 
@@ -538,6 +560,17 @@ public class ServiceEntrantImpl implements ServiceEntrant {
             logger.log(Level.WARNING,ex.getMessage(),ex);
             n=null;
             return n;
+        }
+    }
+
+    @Override
+    public void deleteAll(){
+        String sql = "DELETE FROM entrant";
+        try (Connection connection = dbManager.connectToDB();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            logger.log(Level.WARNING,ex.getMessage(),ex);
         }
     }
 }

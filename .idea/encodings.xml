@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/src/main/java/org/epam/final_project/controller/AdminkaServlet.java" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/src/main/java/org/epam/final_project/controller/AdminkaServlet.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/epam/final_project/controller/AdminkaServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/epam/final_project/controller/ApplyServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/epam/final_project/controller/ChangeInfoEntrantServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/epam/final_project/controller/ProfileServlet.java" charset="UTF-8" />

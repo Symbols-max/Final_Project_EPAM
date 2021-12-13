@@ -1,0 +1,15 @@
+
+v
+java:S19895"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(İÜúö8¨¦™Õ/
+ƒ
+java:S1989?"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(±Üó‚şÿÿÿÿ8ª¦™Õ/
+E
+java:S1185D"(Remove this method to simply inherit it.(‹¨¯¿8«¦™Õ/
+‚
+java:S1989E"`Handle the following exceptions that could be thrown by "doPost": ServletException, IOException.(é÷ö¬øÿÿÿÿ8¬¦™Õ/
+g
+java:S1128"JRemove this unused import 'org.epam.final_project.service.ServiceEntrant'.(ú†¶¼8­¦™Õ/
+p
+java:S1128"NRemove this unused import 'org.epam.final_project.service.ServiceEntrantImpl'.(Ïüùÿÿÿÿ8­¦™Õ/
+W
+java:S1128"5Remove this unused import 'java.util.ResourceBundle'.(ıÆ£¯øÿÿÿÿ8®¦™Õ/

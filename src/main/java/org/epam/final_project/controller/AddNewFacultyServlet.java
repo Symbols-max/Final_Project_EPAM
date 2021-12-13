@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 @WebServlet("/pages/admin/addNewFacultyServlet")
 public class AddNewFacultyServlet extends HttpServlet {
+
     private static final Logger logger=Logger.getLogger(AddNewFacultyServlet.class.getName());
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -47,11 +48,13 @@ public class AddNewFacultyServlet extends HttpServlet {
             String message="Не удалось добавить новый факультет";
             request.setAttribute("message",message);
             try {
-                getServletContext().getRequestDispatcher("/pages/admin/addNewFaculty.jsp").forward(request, response);
+                request.getRequestDispatcher("/pages/admin/addNewFaculty.jsp").forward(request, response);
             } catch (ServletException | IOException e) {
                 logger.log(Level.WARNING,e.getMessage(),e);
                 response.sendRedirect("/pages/errorPage.jsp");
             }
         }
     }
+
+
 }

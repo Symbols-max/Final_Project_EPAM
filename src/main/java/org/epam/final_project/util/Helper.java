@@ -43,4 +43,13 @@ public class Helper {
                 ((numberElements % NUMBER_ELEMENTS_ON_PAGE > 0) ? 1 : 0);
 
     }
+
+//    public static String coder(String password){
+//        String passwordEncode= BCrypt.hashpw(password,BCrypt.gensalt());
+//        return passwordEncode;
+//    }
+//
+//    public static boolean checkPassword(String password,String hash){
+//        return BCrypt.checkpw(password,hash);
+//    }
 }

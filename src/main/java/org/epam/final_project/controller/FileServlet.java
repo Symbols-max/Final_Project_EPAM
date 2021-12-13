@@ -14,7 +14,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.sql.*;
 
-@WebServlet("/Test.pdf")
+@WebServlet("/fileServlet")
 public class FileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,11 +22,10 @@ public class FileServlet extends HttpServlet {
         HttpSession session=request.getSession();
         String email= (String) session.getAttribute("email");
         createFile(email);
-
         File file = new File("C:\\JAVA_3_Course\\Final_Project_EPAM\\src\\main\\webapp\\pages\\diplom.pdf");
         response.setHeader("Content-Type",    getServletContext().getMimeType(file.getName()));
         response.setHeader("Content-Length", String.valueOf(file.length()));
-        response.setHeader("Content-Disposition", "inline; filename=\"Test.pdf\"");
+        response.setHeader("Content-Disposition", "inline; filename=diplom.pdf");
         Files.copy(file.toPath(), response.getOutputStream());
 
             }
